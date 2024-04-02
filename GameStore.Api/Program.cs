@@ -48,8 +48,15 @@ app.MapGet("games", () => games);
 // app.MapGet("/", () => "Hello World!");
 
 // GET /games/1
-app.MapGet("games/{id}", (int id) => games.Find(game => game.Id == id))
-    .WithName(GetGameEndpointName);
+app.MapGet("games/{id}", (int id) => 
+{
+    // It means that we could receive a game or either null
+    GameDto? game = games.Find(game => game.Id == id);
+
+    return game is null ? Results.NotFound() : Results.Ok(game);
+
+})
+.WithName(GetGameEndpointName);
 
 
 // POST /games
@@ -70,10 +77,16 @@ app.MapPost("games", (CreateGameDto newGame) =>
 
 //finished the function of creating a new game
 
-// PUT /games/1
+// PUT /games
 app.MapPut("game/{id}", (int id, UpdateGameDto updateGame) =>
 {
     var index = games.FindIndex(game => game.Id == id);
+
+    if(index == -1)
+    {
+        return Results.NotFound();
+    }
+
     games[index] = new GameDto(
         id,
         updateGame.Name,
