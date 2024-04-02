@@ -4,4 +4,15 @@ GET http://localhost:5065/games
 
 ###
 # Click on "Send request", can see it gets the data from id 1
-GET http://localhost:5065/games/1
+GET http://localhost:5065/games/4
+
+###
+POST http://localhost:5065/games/
+Content-Type: application/json
+ 
+{
+    "name": "Minecraft",
+    "genre": "Kids and Family",
+    "price": 19.99,
+    "releaseDate": "2011-11-18"
+}
