@@ -1,17 +1,17 @@
-<!-- this means that it's a web project, by default to import a bunch of libraies and dependencies-->
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  
   <PropertyGroup>
-    <!-- here means that we have the acesses to all of the apis that are availble in version 8 of the net SDK -->
     <TargetFramework>net8.0</TargetFramework>
-    <!-- dependencies and libs -->
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <!-- MinimalApis.Extensions -->
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.2" />
     <PackageReference Include="MinimalApis.Extensions" Version="0.11.0" />
   </ItemGroup>
 

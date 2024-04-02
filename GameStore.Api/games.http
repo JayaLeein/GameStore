@@ -1,33 +1,29 @@
-# Step1: We are ready to talk to API
-# Step2: to target our API: add "games" from Program.cs: app.MapGet("games", () => games);
-GET http://localhost:5065/games
+GET http://localhost:5274/games
 
 ###
-# Click on "Send request", can see it gets the data from id 1
-GET http://localhost:5065/games/4
+GET http://localhost:5274/games/3
 
 ###
-POST http://localhost:5065/games
+POST http://localhost:5274/games
 Content-Type: application/json
 
 {
-    "name": "Minecraft",
-    "genre": "Kids and Family",
-    "price": 19.99,
-    "releaseDate": "2011-11-18"
+    "name": "Final Fantasy XIV",
+    "genreId": 2,
+    "price": 59.99,
+    "releaseDate": "2010-09-30"
 }
 
 ###
-PUT http://localhost:5065/games/5
+PUT http://localhost:5274/games/3
 Content-Type: application/json
 
 {
     "name": "Street Fighter II Turbo",
-    "genre": "Fighting",
-    "price": 9.99,
+    "genreId": 1,
+    "price": 19.99,
     "releaseDate": "1991-02-01"
 }
 
 ###
-DELETE http://localhost:5065/games/2
-
+DELETE http://localhost:5274/games/2
