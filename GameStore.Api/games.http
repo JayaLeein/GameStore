@@ -1,2 +1,7 @@
-# We are ready to talk to API
-GET http://localhost:5065
+# Step1: We are ready to talk to API
+# Step2: to target our API: add "games" from Program.cs: app.MapGet("games", () => games);
+GET http://localhost:5065/games
+
+###
+# Click on "Send request", can see it gets the data from id 1
+GET http://localhost:5065/games/1
