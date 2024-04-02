@@ -3,7 +3,9 @@
 // Host: to represent an HTTP server implementation for your app so that you can start listening for HTTP request
 // It also stands up a bunch of components and services
 
+using System.Linq.Expressions;
 using System.Reflection.Metadata.Ecma335;
+using GameStore.Api;
 using GameStore.Api.Dtos;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -66,6 +68,31 @@ app.MapPost("games", (CreateGameDto newGame) =>
     return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id}, game);
 });
 
+//finished the function of creating a new game
+
+// PUT /games/1
+app.MapPut("game/{id}", (int id, UpdateGameDto updateGame) =>
+{
+    var index = games.FindIndex(game => game.Id == id);
+    games[index] = new GameDto(
+        id,
+        updateGame.Name,
+        updateGame.Genre,
+        updateGame.Price,
+        updateGame.ReleaseDate
+    );
+
+    return Results.NoContent();
+});
+
+// DELETE /games/1
+app.MapDelete("games/{id}",(int id) =>
+{
+    games.RemoveAll(game => game.Id == id);
+
+    return Results.NoContent();
+}
+);
 
 app.Run();
 
